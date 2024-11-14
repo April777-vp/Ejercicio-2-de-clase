@@ -1,0 +1,67 @@
+public class Main {
+    public static void main(String[] args) {
+
+        int tablasLargas = 26;
+        int tablasCortas = 33;
+        int ganchosPequenos = 200;
+        int ganchosGrandes = 20;
+        int tornillos = 510;
+
+        int tablasLargasPorEstante = 4;
+        int tablasCortasPorEstante = 6;
+        int ganchosPequenosPorEstante = 12;
+        int ganchosGrandesPorEstante = 2;
+        int tornillosPorEstante = 14;
+
+        int estantesRequeridos = 15;
+
+
+        int totalTablasLargas = tablasLargasPorEstante * estantesRequeridos;
+        int totalTablasCortas = tablasCortasPorEstante * estantesRequeridos;
+        int totalGanchosPequenos = ganchosPequenosPorEstante * estantesRequeridos;
+        int totalGanchosGrandes = ganchosGrandesPorEstante * estantesRequeridos;
+        int totalTornillos = tornillosPorEstante * estantesRequeridos;
+
+ 
+        if (tablasLargas >= totalTablasLargas && tablasCortas >= totalTablasCortas &&
+            ganchosPequenos >= totalGanchosPequenos && ganchosGrandes >= totalGanchosGrandes &&
+            tornillos >= totalTornillos) {
+
+            System.out.println("Es posible realizar los 15 estantes pedidos");
+
+
+            int sobranteTablasLargas = tablasLargas - totalTablasLargas;
+            int sobranteTablasCortas = tablasCortas - totalTablasCortas;
+            int sobranteGanchosPequenos = ganchosPequenos - totalGanchosPequenos;
+            int sobranteGanchosGrandes = ganchosGrandes - totalGanchosGrandes;
+            int sobranteTornillos = tornillos - totalTornillos;
+
+            int estantesSobrantes = Math.min(
+                Math.min(sobranteTablasLargas / tablasLargasPorEstante, sobranteTablasCortas / tablasCortasPorEstante),
+                Math.min(sobranteGanchosPequenos / ganchosPequenosPorEstante,
+                         Math.min(sobranteGanchosGrandes / ganchosGrandesPorEstante, sobranteTornillos / tornillosPorEstante))
+            );
+
+            System.out.println("Con el material sobrante puedes construir " + estantesSobrantes + " estantes");
+
+        } else {
+            System.out.println("No es posible cubrir el pedido porque faltan:");
+
+            if (tablasLargas < totalTablasLargas) {
+                System.out.println((totalTablasLargas - tablasLargas) + " tablas largas");
+            }
+            if (tablasCortas < totalTablasCortas) {
+                System.out.println((totalTablasCortas - tablasCortas) + " tablas cortas");
+            }
+            if (ganchosPequenos < totalGanchosPequenos) {
+                System.out.println((totalGanchosPequenos - ganchosPequenos) + " ganchos pequeños");
+            }
+            if (ganchosGrandes < totalGanchosGrandes) {
+                System.out.println((totalGanchosGrandes - ganchosGrandes) + " ganchos grandes");
+            }
+            if (tornillos < totalTornillos) {
+                System.out.println((totalTornillos - tornillos) + " tornillos");
+            }
+        }
+    }
+}
